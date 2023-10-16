@@ -39,12 +39,13 @@ app.get('/auth/google/callback', async (req, res) => {
 app.post('/google-drive-notification', async (req, res) => {
        console.log(req,"request , google-drive-notification'")
     const { body } = req;
+    console.log(body,"body of the drive notification")
     const fileId = body.fileId;
     console.log(fileId, 'fileID');
     await getRecordingLinkFromMeet(fileId);
 });
 app.listen(3000, () => {
-      try{
+    try{
         console.log('Server is running on port 3000');
     oAuth2Client.setCredentials({
         access_token: process.env.access_token,
@@ -58,6 +59,9 @@ app.listen(3000, () => {
                 id: uniqueChannelId, // Replace with a unique channel ID
                 type: 'web_hook',
                 address: 'https://google-meet-recording.onrender.com/google-drive-notification',
+            },
+            headers: {
+                'Content-Type': 'application/json',
             },
         },
         (err, res) => {
