@@ -43,7 +43,8 @@ app.post('/google-drive-notification', async (req, res) => {
     await getRecordingLinkFromMeet(fileId);
 });
 app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+      try{
+        console.log('Server is running on port 3000');
     oAuth2Client.setCredentials({
         access_token: process.env.access_token,
         refresh_token: process.env.refresh_token,
@@ -66,4 +67,8 @@ app.listen(3000, () => {
             }
         }
     );
+    }
+    catch(err){
+        console.log(err,":occured during the drive notification")
+    }
 });
