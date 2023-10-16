@@ -37,10 +37,14 @@ app.get('/auth/google/callback', async (req, res) => {
 });
 
 app.post('/google-drive-notification', async (req, res) => {
-       console.log(req,"request , google-drive-notification'")
+    console.log("google-drive-notification",req)
+    
+    console.log("---------------------------------------------------------------------------------------------- another log for hearder notification ----------------------------------------")
+    console.log("headers:",req.headers)
+     console.log("---------------------------------------------------------------------------------------------- another log for body notification ----------------------------------------")
     const { body } = req;
     console.log(body,"body of the drive notification")
-    const fileId = body.fileId;
+    const fileId = body.changes[0].fileId;
     console.log(fileId, 'fileID');
     await getRecordingLinkFromMeet(fileId);
 });
