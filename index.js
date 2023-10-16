@@ -55,7 +55,7 @@ app.listen(3000, () => {
             requestBody: {
                 id: uniqueChannelId, // Replace with a unique channel ID
                 type: 'web_hook',
-                address: 'https://PrepBytes_LiveSessions_recording/google-drive-notification',
+                address: 'https://google-meet-recording.onrender.com/google-drive-notification',
             },
         },
         (err, res) => {
